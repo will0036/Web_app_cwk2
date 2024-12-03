@@ -1,0 +1,53 @@
+{% extends "PageLayout.html" %}
+{% block content %}
+<header>
+  <!-- If header is given set header if not set No header specified  -->
+  {% if header%}
+  <h1>{{header }}</h1>
+  {% else %}
+  <h1> No header specified</h1>
+  {% endif %}
+</header>
+
+<div class="container">
+  <div class="row g-2 ">
+    <div class="col justify-content-center">
+      <!-- If subheader is given set subheader if not set No subheader specified  -->
+      {% if subheader1%}
+      <h1>{{subheader1 }}</h1>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row g-2">
+    <div class="col">
+      <p>PetCarePro connects pet owners with professional pet carers from all over the world. For first time pet owners visiting the website you simply register to the webiste giving you accsess to the userdashboard. The user dashboard allows you to log your pets name, breed and species. Once a pet has been registered the search page can be used to find pet care providers that offer the services you want in an area near you. Bookings are made on the selected pet care proffesional on an available date and will can be accepted by the provider. Once a booking has been completed owners can write reviews about a provider that can be viewed on the providers profile.</p>
+      <p>Petcare Providers once registered will be asked to submit a form detailing the services they offer and their location. The provider dashboard shows completed,confirmed and pending bookings along with a calendar showing upcoming bookings.</p>
+    </div>
+  </div>
+  <div class="row g-2 ">
+    <div class="col justify-content-center">
+      <!-- If subheader is given set subheader if not set No subheader specified  -->
+      {% if subheader2%}
+      <h1>{{subheader2 }}</h1>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row g-2">
+    {% for t in topproviders %}
+    <div class="col">
+      <div class="info shadow-sm border-light">
+        <div class="info-body">
+          <a href="{{url_for('viewProviderProfile',id=t.id)}}"><h5 class="info-title text-primary">{{t.user.fname}} {{t.user.lname}}</h5></a>
+          <h6 class="info-subtitle mb-2 text-muted">{{t.services_offered}}</h6>
+          <h6 class="info-subtitle mb-2 text-muted"></h6>{{t.country}} {{t.city}} {{t.postcode}}</h6>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Import jquery for bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+{% endblock %}

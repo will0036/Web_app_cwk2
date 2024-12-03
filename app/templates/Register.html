@@ -1,0 +1,94 @@
+<!Doctype HTML>
+<html>
+    <head>
+      <!-- Import bootstrap and Css stylesheet -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <!-- If title is given set title if not set No title specified  -->
+      {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+    </head> 
+
+    <body>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+          {% for message in messages %}
+            <li>{{ message }} </li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}     
+      <div class="container">
+        <div class="row g-2 vh-100 align-items-center justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
+              <h1 class = "mb-0 text-center">Register</h1>
+                <form action="" method="post" name="registerform" >
+                {{ registerform.hidden_tag() }}
+                <!-- Each Question and Label is grouped in bootstrap Class form-group-->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <!-- Each label given bootstrap class form-label-->
+                        {{ registerform.username.label(class='form-label')}}<br>
+                        <!-- Each User input box given class form-control and a placeholder-->
+                        {{ registerform.username (class='form-control', placeholder='username')}}<br>
+                        {% for error in registerform.username.errors %}
+                          [{{ error }}]
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ registerform.password.label(class='form-label')}}<br>
+                        {{ registerform.password (class='form-control', placeholder='Password') }}<br>
+                        {% for error in registerform.password.errors %}
+                          [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ registerform.email.label(class='form-label')}}<br>
+                    {{ registerform.email (class='form-control', placeholder='Email') }}<br>
+                    {% for error in registerform.email.errors %}
+                      [{{ error }}]
+                    {% endfor %}
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ registerform.fname.label(class='form-label')}}<br>
+                        {{ registerform.fname (class='form-control', placeholder='First Name') }}<br>
+                        {% for error in registerform.fname.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ registerform.lname.label(class='form-label')}}<br>
+                        {{ registerform.lname (class='form-control', placeholder='Last Name') }}<br>
+                        {% for error in registerform.lname.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ registerform.user_type.label(class='form-label')}}<br>
+                    {{ registerform.user_type (class='form-control', placeholder='User Type') }}<br>
+                    {% for error in registerform.user_type.errors %}
+                      [{{ error }}]
+                    {% endfor %}
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-success w-100">Register</button> 
+              </form>
+              <p class = "mb-0 text-center">Already signed up? <a href ="/login" class = "text-decoration-none">Login Here</a></p>
+            </div>  
+          </div>
+        </div>
+      </div>
+    <!-- Import jquery for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
+</html>

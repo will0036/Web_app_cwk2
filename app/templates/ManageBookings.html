@@ -1,0 +1,82 @@
+{% extends "PageLayout.html" %}
+{% block content %}
+<header>
+  <!-- If header is given set header if not set No header specified  -->
+  {% if header%}
+  <h1>{{header }}</h1>
+  {% else %}
+  <h1> No header specified</h1>
+  {% endif %}
+</header>
+
+<div class="container">
+  <div class="row g-2 ">
+    <div class="col">
+      <!-- If subheader is given set subheader if not set No subheader specified  -->
+      {% if subheader1%}
+      <h1>{{subheader1 }}</h1>
+      {% endif %}
+    </div>
+  </div>
+  {%for p in pending%}
+  <div class="row g-2 ">
+      <div class="col">
+        <div class="info shadow-sm border-light">
+          <div class="info-body">
+            <h5 class="info-title text-primary">{{ p.pet.name }}</h5>
+            <h6 class="info-subtitle mb-2 text-muted">{{ p.service }}</h6>
+            <p class="info-text"><strong>Start Date:</strong> {{ p.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ p.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+          </div>
+        </div>
+      </div>
+  </div>
+  {%endfor%}
+  <div class="row g-2 ">
+    <div class="col">
+      {% if subheader2%}
+      <h1>{{subheader2 }}</h1>
+      {% endif %}
+    </div>
+  </div>
+  {%for c in confirmed%}
+  <div class="row g-2 ">
+      <div class="col">
+        <div class="info shadow-sm border-light">
+          <div class="info-body">
+            <h5 class="info-title text-primary">{{ c.pet.name }}</h5>
+            <h6 class="info-subtitle mb-2 text-muted">{{ c.service }}</h6>
+            <p class="info-text"><strong>Start Date:</strong> {{ c.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ c.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+          </div>
+        </div>
+      </div>
+  </div>
+  {%endfor%}
+  <div class="row g-2 ">
+    <div class="col">
+      {% if subheader3%}
+      <h1>{{subheader3 }}</h1>
+      {% endif %}
+    </div>
+  </div>
+  {%for c in complete%}
+  <div class="row g-2 ">
+      <div class="col">
+        <div class="info shadow-sm border-light">
+          <div class="info-body">
+            <h5 class="info-title text-primary">{{ c.pet.name }}</h5>
+            <h6 class="info-subtitle mb-2 text-muted">{{ c.service }}</h6>
+            <p class="info-text"><strong>Start Date:</strong> {{ c.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ c.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+            {% if not c.review %}
+              <a href="{{ url_for('CreateReview', owner_id=c.pet.owner_id, provider_id= c.provider_id) }}" class="btn btn-outline-primary" >Write Review</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  </div>
+  {%endfor%}
+</div>
+<!-- Import jquery for bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+{% endblock %}

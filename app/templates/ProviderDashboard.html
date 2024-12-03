@@ -1,0 +1,52 @@
+{% extends "Dashboard.html" %}
+{% block content1 %}
+{%for p in pending%}
+<div class="row g-2">
+  <div class="col">
+    <div class="info shadow-sm border-light">
+      <div class="info-body">
+        <h5 class="info-title text-primary">{{ p.pet.name }}</h5>
+        <h6 class="info-subtitle mb-2 text-muted">{{ p.service }}</h6>
+        <p class="info-text"><strong>Start Date:</strong> {{ p.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ p.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+        <a href="{{ url_for('ConfirmBooking', id=p.id) }}" class="btn btn-outline-primary" >Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%}
+{% endblock %}
+{% block content2 %}
+{%for c in confirmed%}
+<div class="row g-2">
+  <div class="col">
+    <div class="info shadow-sm border-light">
+      <div class="info-body">
+        <h5 class="info-title text-primary">{{ c.pet.name }}</h5>
+        <h6 class="info-subtitle mb-2 text-muted">{{ c.service }}</h6>
+        <p class="info-text"><strong>Start Date:</strong> {{ c.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ c.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+        <a href="{{ url_for('CompleteBooking', id=c.id) }}" class="btn btn-outline-primary" >Complete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%}
+{% endblock %}
+{% block content3 %}
+{%for c in complete%}
+<div class="row g-2">
+  <div class="col">
+    <div class="info shadow-sm border-light">
+      <div class="info-body">
+        <h5 class="info-title text-primary">{{ c.pet.name }}</h5>
+        <h6 class="info-subtitle mb-2 text-muted">{{ c.service }}</h6>
+        <p class="info-text"><strong>Start Date:</strong> {{ c.date_start.strftime('%Y-%m-%d %H:%M') }}<br><strong>Finish Date:</strong> {{ c.date_finish.strftime('%Y-%m-%d %H:%M') }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%}
+{% endblock %}
+{% block content4 %}
+<div id="calendar"></div>
+<div id="bookedDates" style="display: none;">{{ booked_dates | safe }}</div>
+{% endblock %}

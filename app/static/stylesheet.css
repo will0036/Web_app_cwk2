@@ -1,0 +1,117 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: white;
+}
+header {
+  background-color: white;
+  text-align: center;
+  font-size: 50px;
+  color: black;
+}
+.col h1{
+  color: black;
+  font-size: 30px;
+  padding:0;
+}
+.col h2{
+  color: black;
+  font-size: 25px;
+  padding:0;
+}
+.col h3{
+  color: black;
+  font-size: 15px;
+  font-weight: normal;
+}
+.col h4{
+  color: grey;
+  font-size: 15px;
+  font-weight: normal;
+}
+.module{
+  background-color: lightgrey;
+  width: 100%;
+}
+.container{
+  margin-left: "0";
+}
+#calendar {
+  max-width: 700px; 
+  height: 700px;    
+  margin: 0 auto;   
+}
+.star_rating {
+  display: inline-block;
+  border: 0;
+}
+.star_rating input {
+  display: none;
+}
+.star_rating label {
+  float: right;
+}
+.star_rating label:before {
+  display: inline-block;
+  font-size: 2rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  cursor: pointer;
+  font-family: FontAwesome;
+  content: "\f005 "; 
+}
+.star_rating .half:before {
+  content: "\f089 "; 
+  position: absolute;
+  padding-right: 0;
+}
+input:checked ~ label{ 
+  color: gold;  
+}
+label:hover, label:hover ~ label { 
+  color: gold;  
+}
+input:checked + label:hover, input:checked ~ label:hover{ 
+  color: gold;  
+} 
+input:checked ~ label:hover ~ label{ 
+  color: gold;  
+}
+label:hover ~ input:checked ~ label { 
+  color: gold;  
+}
+.star:before  {
+  display: inline-block;
+  font-size: 2rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  font-family: FontAwesome;
+  content: "\f005";  
+  color: grey;
+}
+.star.whole:before {
+  content: "\f005"; 
+  color: gold; 
+}
+.star.half:before {
+  content: "\f089"; 
+  padding-right: 0;
+  color: gold;
+}
+.info {
+  border-radius: 10px; 
+}
+.info-title {
+  font-size: 1.25rem; 
+}
+.info-subtitle {
+  font-size: 1rem; 
+}
+.info-text {
+  font-size: 1rem; 
+}
+.ifno-body {
+  padding: 1rem;
+}

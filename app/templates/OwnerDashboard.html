@@ -1,0 +1,30 @@
+{% extends "Dashboard.html" %}
+{% block content1 %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+ <ul>
+  {% for message in messages %}
+    <li>{{ message }} </li>
+  {% endfor %}
+ </ul>
+{% endif %}
+{% endwith %}
+{%for i in user_pets%}
+<div class="row g-2">
+    <div class="col">
+      <div class="info shadow-sm border-light">
+        <div class="info-body">
+          <h5 class="info-title text-primary">{{i.name}}</h5>
+          <h6 class="info-subtitle mb-2 text-muted">{{i.species}}</h6>
+          <h6 class="info-subtitle mb-2 text-muted">{{i.breed}}</h6>
+          <a href="{{ url_for('DeletePet', id=i.id) }}" class="btn btn-outline-primary" >Delete</a>
+          <a href="{{ url_for('EditPet', id=i.id) }}" class="btn btn-outline-primary" >Edit</a>
+          <a href="{{ url_for('ManageBookings', pet_id=i.id) }}" class="btn btn-outline-primary" >Bookings</a>
+        </div>
+      </div>
+    </div> 
+</div>
+<br>
+{%endfor%}
+<a href="/petcreate" class="btn btn-outline-primary">Add pet</a> 
+{% endblock %}

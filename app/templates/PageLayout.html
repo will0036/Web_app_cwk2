@@ -1,0 +1,61 @@
+<!Doctype HTML>
+<html>
+    <head>
+      <!-- Import bootstrap and Css stylesheet -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css">
+      <link href="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-2.1.8/datatables.min.css" rel="stylesheet">
+      <!-- If title is given set title if not set No title specified  -->
+      {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+    </head> 
+
+    <body>
+      <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">PetCarePro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home </a>
+            </li>
+            {% if current_user.user_type=="Owner" %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/search">Search </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/ownerdashboard">Owner Dashboard </a>
+            </li>
+            {% elif current_user.user_type=="Provider" %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/providerdashboard">Provider Dashboard </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/providerdetailsedit">Edit Provider Profile</a>
+            </li>
+            {% endif %}
+            {% if current_user.is_anonymous %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/login">Login </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/register">Register </a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Logout </a>
+            </li>
+            {% endif %}
+          </ul>
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </body>
+</html>

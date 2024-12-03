@@ -1,0 +1,82 @@
+<!Doctype HTML>
+<html>
+    <head>
+      <!-- Import bootstrap and Css stylesheet -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <!-- If title is given set title if not set No title specified  -->
+      {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+    </head> 
+
+    <body>
+      {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li>{{ message }} </li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+      <div class="container">
+        <div class="row vh-100 align-items-center justify-content-center">
+          <div class="col-sm-8 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
+            <h1 class = "mb-0 text-center">Review</h1>
+            <form action="" method="post" name="reviewform" >
+            {{ reviewform.hidden_tag() }}
+            <!-- Each Question and Label is grouped in bootstrap Class form-group-->
+            <div class="mb-4">
+                <div class="form-group">
+                <!-- Each label given bootstrap class form-label-->
+                {{ reviewform.comment.label(class='form-label')}}<br>
+                <!-- Each User input box given class form-control and a placeholder-->
+                {{ reviewform.comment (class='form-control', placeholder='Comment')}}<br>
+                {% for error in reviewform.comment.errors %}
+                    [{{ error }}]
+                {% endfor %}
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="form-group">
+                    {{ reviewform.rating.label(class='form-label')}}<br>
+                    <div class="star_rating">
+                      <input type="radio" id="5star" name="rating" value="5">
+                      <label for="5star"></label>
+                      <input type="radio" id="4.5star" name="rating" value="4.5">
+                      <label for="4.5star" class="half"></label>
+                      <input type="radio" id="4star" name="rating" value="4">
+                      <label for="4star"></label>
+                      <input type="radio" id="3.5star" name="rating" value="3.5">
+                      <label for="3.5star" class="half"></label>         
+                      <input type="radio" id="3star" name="rating" value="3">
+                      <label for="3star"></label>
+                      <input type="radio" id="2.5star" name="rating" value="2.5">
+                      <label for="2.5star" class="half"></label>             
+                      <input type="radio" id="2star" name="rating" value="2">
+                      <label for="2star"></label>
+                      <input type="radio" id="1.5star" name="rating" value="1.5">
+                      <label for="1.5star" class="half"></label>
+                      <input type="radio" id="1star" name="rating" value="1">
+                      <label for="1star"></label>
+                    </div> 
+                    {% for error in reviewform.rating.errors %}
+                      [{{ error }}]
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-success w-100">Submit</button> 
+            </form>
+          </div>
+        </div>
+    <!-- Import jquery for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
+</html>
