@@ -25,14 +25,16 @@ def create_fake_pets(n):
 def create_fake_provider_profile():
     providers= User.query.filter_by(user_type='Provider').all()
     for p in providers:
-        service_offered_list=["Grooming","Daycare","Walking","Training","Veterinary Services","Overnightcare"]
-        random_service_offered_list= random.sample(service_offered_list,random.randint(1,5))
-        services = ""
-        for i in range(len(random_service_offered_list)):
-            services = services + random_service_offered_list[i] + ", "
-        services = services[:-2]
-        providerprofile = ProviderProfile(user_id = p.id, services_offered= services, country=faker.country(), city=faker.city(), postcode=faker.zipcode())
-        db.session.add(providerprofile)
+        profile = ProviderProfile.query.filter_by(user_id= p.id).first()
+        if not profile:
+            service_offered_list=["Grooming","Daycare","Walking","Training","Veterinary Services","Overnightcare"]
+            random_service_offered_list= random.sample(service_offered_list,random.randint(1,5))
+            services = ""
+            for i in range(len(random_service_offered_list)):
+                services = services + random_service_offered_list[i] + ", "
+            services = services[:-2]
+            providerprofile = ProviderProfile(user_id = p.id, services_offered= services, country=faker.country(), city=faker.city(), postcode=faker.zipcode())
+            db.session.add(providerprofile)
     db.session.commit()
 #Create n fake bookings for each pet
 def create_fake_bookings(n):
